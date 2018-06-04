@@ -9,6 +9,7 @@ public class GameState extends States{
 	private Player player;
 	
 	public GameState() {
+		//SUPERMAN
 		player = new Player(100, 100);
 		
 	}
