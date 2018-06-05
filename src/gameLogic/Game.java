@@ -3,6 +3,7 @@ package gameLogic;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import dungeonGame.input.KeyManager;
 import dungeonGame.states.BaseState;
 import dungeonGame.states.BattleState;
 import dungeonGame.states.GameState;
@@ -32,21 +33,26 @@ public class Game implements Runnable {
 	private States baseState;
 	private States battleState;
 	
+	//Input
+	private KeyManager keyManager;
+	
 	// Constructor for your game screens
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		keyManager = new KeyManager();
 	}
 	
 	private void init() {
 		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 		Assets.init();
 		
-		gameState = new GameState();
-		mainMenuState = new MainMenuState();
-		baseState = new BaseState();
-		battleState = new BattleState();
+		gameState = new GameState(this);
+		mainMenuState = new MainMenuState(this);
+		baseState = new BaseState(this);
+		battleState = new BattleState(this);
 		
 		States.setState(gameState);
 	}
@@ -54,6 +60,8 @@ public class Game implements Runnable {
 	
 	
 	private void update() {
+		keyManager.update();
+		
 		if(States.getState() != null);
 			States.getState().update();
 		
@@ -120,6 +128,14 @@ public class Game implements Runnable {
 		stop(); // In case the game hasn't already been stopped
 		
 	}
+	
+	public KeyManager getKeyManager() {
+		return keyManager;
+		
+	}
+	
+	
+	
 	// This will start the thread
 	public synchronized void start() {
 		if (running) // if the game is already running don't execute the code below

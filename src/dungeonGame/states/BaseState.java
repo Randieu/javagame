@@ -2,10 +2,12 @@ package dungeonGame.states;
 
 import java.awt.Graphics;
 
+import gameLogic.Game;
+
 public class BaseState extends States {
 
-	public BaseState() {
-		
+	public BaseState(Game game) {
+		super(game);
 	}
 	
 	@Override
