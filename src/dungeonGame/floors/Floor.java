@@ -3,10 +3,12 @@ package dungeonGame.floors;
 import java.awt.Graphics;
 
 import dungeonGame.tiles.Tile;
+import dungeonGame.utils.Utils;
 
 public class Floor {
 
 	private int width, height;
+	private int spawnX, spawnY;
 	private int[][] tiles;
 	
 	public Floor(String path) {
@@ -14,7 +16,7 @@ public class Floor {
 	}
 	
 	public void update() {
-		
+
 	}
 	
 	public void render(Graphics g) {
@@ -34,13 +36,17 @@ public class Floor {
 	}
 	
 	private void loadWorld(String path) {
-		width =5;
-		height = 5;
-		tiles = new int[width][height];
+		String file = Utils.loadFileAsString(path);
+		String[] tokens = file.split("\\s+");
+		width = Utils.parseInt(tokens[0]);
+		height = Utils.parseInt(tokens[1]);
+		spawnX = Utils.parseInt(tokens[2]);
+		spawnY = Utils.parseInt(tokens[3]);
 		
-		for(int x = 0;x < width;x++) {
-			for(int y = 0;y < height;y++) {
-				tiles[x][y] = 0;
+		tiles = new int[width][height];
+		for(int y = 0;y < height;y++) {
+			for(int x = 0;x < width;x++) {
+				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
 			}
 		}
 		
