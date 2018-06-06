@@ -17,7 +17,7 @@ public class GameCamera {
 	
 	public void centerOnEntity(Entity e) {
 		xOffset = e.getX() - game.getWidht() / 2 + e.getWidth() / 2;
-		yOffset = e.getY() - game.getHeigt() /2 + e.getHeight() / 2;
+		yOffset = e.getY() - game.getHeight() /2 + e.getHeight() / 2;
 	}
 	
 	public void move(float xAmt, float yAmt) {

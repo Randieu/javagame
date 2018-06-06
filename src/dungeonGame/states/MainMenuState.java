@@ -2,12 +2,12 @@ package dungeonGame.states;
 
 import java.awt.Graphics;
 
-import gameLogic.Game;
+import gameLogic.Handler;
 
 public class MainMenuState extends States {
 
-	public MainMenuState(Game game) {
-		super(game);
+	public MainMenuState(Handler handler) {
+		super(handler);
 		
 	}
 	

@@ -4,19 +4,21 @@ import java.awt.Graphics;
 
 import dungeonGame.entitites.creatures.Player;
 import dungeonGame.floors.Floor;
-import gameLogic.Game;
+import gameLogic.Handler;
 
 public class GameState extends States{
 
 	private Player player;
 	private Floor floor_one;
 	
-	public GameState(Game game) {
-		super(game);
-		player = new Player(game, 100, 100);
-		floor_one = new Floor(game,"Resources/Floors/Floor1.txt");
+	public GameState(Handler handler) {
+		super(handler);
+		floor_one = new Floor(handler,"Resources/Floors/Floor1.txt");
+		handler.setFloor(floor_one);
+		player = new Player(handler, 100, 100);
 		
-		game.getGameCamera().move(0, 0);
+		
+		handler.getGameCamera().move(0, 0);
 	}
 	
 	@Override

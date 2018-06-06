@@ -39,6 +39,8 @@ public class Game implements Runnable {
 	//Camera
 	private GameCamera gameCamera;
 	
+	//Handler
+	private Handler handler;
 	
 	// Constructor for your game screens
 	public Game(String title, int width, int height) {
@@ -54,11 +56,12 @@ public class Game implements Runnable {
 		Assets.init();
 		
 		gameCamera = new GameCamera(this, 0, 0);
+		handler = new Handler(this);
 		
-		gameState = new GameState(this);
-		mainMenuState = new MainMenuState(this);
-		baseState = new BaseState(this);
-		battleState = new BattleState(this);
+		gameState = new GameState(handler);
+		mainMenuState = new MainMenuState(handler);
+		baseState = new BaseState(handler);
+		battleState = new BattleState(handler);
 		
 		States.setState(gameState);
 	}
@@ -148,7 +151,7 @@ public class Game implements Runnable {
 		return width;
 	}
 	
-	public int getHeigt() {
+	public int getHeight() {
 		return height;
 	}
 	

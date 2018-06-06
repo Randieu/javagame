@@ -2,7 +2,7 @@ package dungeonGame.states;
 
 import java.awt.Graphics;
 
-import gameLogic.Game;
+import gameLogic.Handler;
 
 // States are nice to use for switching between game states like start menu, actual gameplay, monster battles enz...
 public abstract class States {
@@ -20,10 +20,10 @@ public abstract class States {
 	
 	// CLASS
 	
-	protected Game game;
+	protected Handler handler;
 	
-	public States(Game game) {
-		this.game = game;
+	public States(Handler handler) {
+		this.handler = handler;
 	}
 	
 	public abstract void update();
