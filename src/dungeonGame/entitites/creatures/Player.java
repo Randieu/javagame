@@ -45,9 +45,11 @@ public class Player extends Creature {
 	public void render(Graphics g) {
 		g.drawImage(Assets.p_one, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null); //convert the float variables to integers with casting because drawImage can't draw floats
 		
-		
+		// g.setColor(Color.red);
+		// g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+				// (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+				// bounds.width, bounds.height);
 	}
-
 	
 	
 }
