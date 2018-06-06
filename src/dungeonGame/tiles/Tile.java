@@ -7,8 +7,8 @@ public class Tile {
 
 	// Static here
 	public static Tile[] tiles = new Tile[256];
-	public static Tile pathTile = new PathTile(0); // It is a tile but it has a class of its own
-	public static Tile wallTile = new WallTile(1);
+	public static Tile wallTile = new WallTile(0); // It is a tile but it has a class of its own
+	public static Tile pathTile = new PathTile(1);
 	public static Tile unexploredTile = new UnexploredTile(2);
 	
 	

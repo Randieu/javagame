@@ -1,5 +1,6 @@
 package dungeonGame.entitites.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import gameLogic.Handler;
@@ -10,6 +11,11 @@ public class Player extends Creature {
 	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+	
+		bounds.x = 16;
+		bounds.y = 32;
+		bounds.width = 32;
+		bounds.height = 32;
 		
 	}
 
