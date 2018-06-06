@@ -11,14 +11,14 @@ import dungeonGame.states.MainMenuState;
 import dungeonGame.states.States;
 import gameGraphic.Display;
 import gameLogic.gfx.Assets;
+import gameLogic.gfx.GameCamera;
 
 // implements Runnable so you can run it on a thread, you need public void run() inside your class for this
 public class Game implements Runnable {
 	
 	// Define your variables here
 	private Display display;
-	
-	public int width, height;
+	private int width, height;
 	public String title;
 	
 	private boolean running = false;
@@ -36,6 +36,10 @@ public class Game implements Runnable {
 	//Input
 	private KeyManager keyManager;
 	
+	//Camera
+	private GameCamera gameCamera;
+	
+	
 	// Constructor for your game screens
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -48,6 +52,8 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
 		Assets.init();
+		
+		gameCamera = new GameCamera(this, 0, 0);
 		
 		gameState = new GameState(this);
 		mainMenuState = new MainMenuState(this);
@@ -134,6 +140,17 @@ public class Game implements Runnable {
 		
 	}
 	
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+	
+	public int getWidht() {
+		return width;
+	}
+	
+	public int getHeigt() {
+		return height;
+	}
 	
 	
 	// This will start the thread

@@ -14,7 +14,9 @@ public class GameState extends States{
 	public GameState(Game game) {
 		super(game);
 		player = new Player(game, 100, 100);
-		floor_one = new Floor("Resources/Floors/Floor1.txt");
+		floor_one = new Floor(game,"Resources/Floors/Floor1.txt");
+		
+		game.getGameCamera().move(0, 0);
 	}
 	
 	@Override

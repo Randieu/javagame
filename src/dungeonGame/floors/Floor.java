@@ -4,14 +4,17 @@ import java.awt.Graphics;
 
 import dungeonGame.tiles.Tile;
 import dungeonGame.utils.Utils;
+import gameLogic.Game;
 
 public class Floor {
 
+	private Game game;
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
 	
-	public Floor(String path) {
+	public Floor(Game game, String path) {
+		this.game = game;
 		loadWorld(path);
 	}
 	
@@ -22,7 +25,8 @@ public class Floor {
 	public void render(Graphics g) {
 		for(int y = 0;y < height;y++) {
 			for(int x = 0;x < width;x++) {
-				getTile(x, y).render(g, x * Tile.TILEWIDTH, y * Tile.TILEHEIGHT);
+				getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - game.getGameCamera().getxOffset()),
+						(int) (y * Tile.TILEHEIGHT - game.getGameCamera().getyOffset()));
 				
 			}
 		}

@@ -1,6 +1,7 @@
 package dungeonGame.entitites.creatures;
 
 import dungeonGame.entitites.Entity;
+import gameLogic.Game;
 
 public abstract class Creature extends Entity{
 
@@ -14,8 +15,8 @@ public abstract class Creature extends Entity{
 	protected float speed;
 	protected float xMove, yMove;
 	
-	public Creature(float x, float y, int width, int height) {
-		super(x, y, width, height);
+	public Creature(Game game, float x, float y, int width, int height) {
+		super(game, x, y, width, height);
 		health = DEFAULT_HEALTH;
 		speed = DEAFAULT_SPEED;
 		xMove = 0;
