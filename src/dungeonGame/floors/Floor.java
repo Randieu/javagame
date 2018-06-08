@@ -50,6 +50,7 @@ public class Floor {
 		
 	}
 	
+
 	public Tile getTile(int x, int y) {
 		if(x < 0 || y < 0 || x >= width || y >= height)
 			return Tile.unexploredTile;
@@ -83,6 +84,10 @@ public class Floor {
 
 	public int getHeight() {
 		return height;
+	}
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 	
 }

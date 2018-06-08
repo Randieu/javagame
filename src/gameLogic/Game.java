@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import dungeonGame.input.KeyManager;
+import dungeonGame.input.MouseManager;
 import dungeonGame.states.BaseState;
 import dungeonGame.states.BattleState;
 import dungeonGame.states.GameState;
@@ -28,13 +29,14 @@ public class Game implements Runnable {
 	private Graphics g; // It draws graphics to the canvas
 	
 	//States
-	private States gameState;
-	private States mainMenuState;
+	public States gameState;
+	public States mainMenuState;
 	private States baseState;
 	private States battleState;
 	
 	//Input
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	//Camera
 	private GameCamera gameCamera;
@@ -48,11 +50,16 @@ public class Game implements Runnable {
 		this.height = height;
 		this.title = title;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 	
 	private void init() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseListener(mouseManager); 
+		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 		
 		handler = new Handler(this);
@@ -63,7 +70,7 @@ public class Game implements Runnable {
 		baseState = new BaseState(handler);
 		battleState = new BattleState(handler);
 		
-		States.setState(gameState);
+		States.setState(mainMenuState);
 	}
 	
 	
@@ -141,6 +148,10 @@ public class Game implements Runnable {
 	public KeyManager getKeyManager() {
 		return keyManager;
 		
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
 	}
 	
 	public GameCamera getGameCamera() {
