@@ -8,6 +8,9 @@ public class Assets {
 	
 	public static BufferedImage p_one, p_two, p_three, p_four, p_five;
 	
+	//If you want to have animations you can do that with an Array
+	
+	
 	public static void init() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/Textures/TestSpriteOne.png"));
 		

@@ -2,6 +2,8 @@ package dungeonGame.floors;
 
 import java.awt.Graphics;
 
+import dungeonGame.entitites.EntityManager;
+import dungeonGame.entitites.creatures.Player;
 import dungeonGame.tiles.Tile;
 import dungeonGame.utils.Utils;
 import gameLogic.Handler;
@@ -13,13 +15,22 @@ public class Floor {
 	private int spawnX, spawnY;
 	private int[][] tiles;
 	
+	//Entities
+	private EntityManager entityManager;
+	
 	public Floor(Handler handler, String path) {
 		this.handler = handler;
+		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		
 		loadWorld(path);
+		
+		entityManager.getPlayer().setX(spawnX);
+		entityManager.getPlayer().setY(spawnY);
 	}
 	
 	public void update() {
-
+		entityManager.update();
+		
 	}
 	
 	public void render(Graphics g) {
@@ -32,9 +43,11 @@ public class Floor {
 			for(int x = xStart;x < xEnd;x++) {
 				getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()),
 						(int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
-				
-			}
+					}
 		}
+		// Entities
+		entityManager.render(g);
+		
 	}
 	
 	public Tile getTile(int x, int y) {
