@@ -1,28 +1,42 @@
 package dungeonGame.states;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import gameLogic.Handler;
+import gameLogic.gfx.Assets;
+import gameLogic.ui.ClickListener;
+import gameLogic.ui.UIImageButton;
+import gameLogic.ui.UIManager;
 
 public class MainMenuState extends States {
 
+	private UIManager uiManager;
+	
 	public MainMenuState(Handler handler) {
 		super(handler);
-		
+		uiManager = new UIManager(handler);
+		handler.getMouseManager().setUIManager(uiManager);
 	}
 	
 	@Override
 	public void update() {		
-		if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
-			States.setState(handler.getGame().gameState);
+		uiManager.update();
+		
+		uiManager.addObject(new UIImageButton(200, 200, 64, 64, Assets.btn_start, new ClickListener(){
+
+			@Override
+			public void onClick() {
+				States.setState(handler.getGame().gameState);
+				
+			}
+		})); 
+			
 		
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.ORANGE);
-		g.fillRect(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), 8, 8);
+		uiManager.render(g);
 		
 	}
 
